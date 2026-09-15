@@ -10,8 +10,8 @@
 |---|---|
 | **Team Name** | VoltVision |
 | **Track** | AI |
-| **Team Lead** | VoltVision Lead — voltvision@ibm.com |
-| **Members** | VoltVision Member 1, VoltVision Member 2 |
+| **Team Lead** | VoltVision Lead — d24dcs175@charusat.edu.in|
+| **Members** | VoltVision Member 1 - d24dcs165@charusat.edu.in, VoltVision Member 2 - d24dcs169@charusat.edu.in, VoltVision Member 3 - d24dcs179@charusat.edu.in |
 
 ---
 
