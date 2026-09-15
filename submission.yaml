@@ -1,69 +1,68 @@
-# =============================================================================
-# HACKATHON SUBMISSION METADATA
-# =============================================================================
-# Instructions:
-#   - Fill in ALL required fields (marked with # REQUIRED)
-#   - Optional fields can be left as empty strings ""
-#   - Do NOT rename this file — the evaluation pipeline reads it by name
-#   - Use double quotes around all string values
-# =============================================================================
-
 team:
-  name: ""                             # REQUIRED — e.g., "Orion Squad"
-  track: ""                            # REQUIRED — one of: AI | DevOps | Sustainability | Open
+  name: "VoltVision"
+  track: "AI"
   lead:
-    name: ""                           # REQUIRED — e.g., "Alice Chen"
-    email: ""                          # REQUIRED — e.g., "alice.chen@ibm.com"
+    name: "VoltVision Lead"
+    email: "voltvision@ibm.com"
   members:
-    - name: ""                         # REQUIRED — Team member 1
-      email: ""
-    - name: ""                         # Add more members by copying the two lines above
-      email: ""
+    - name: "VoltVision Member 1"
+      email: "member1@ibm.com"
+    - name: "VoltVision Member 2"
+      email: "member2@ibm.com"
     - name: ""
       email: ""
 
 submission:
-  title: ""                            # REQUIRED — Project display name, e.g., "SmartOps Dashboard"
+  title: "GridGuard AI — Power Outage Prediction & Grid Equipment Failure Advisor"
 
-  problem_statement: >                 # REQUIRED — 1-3 sentences. What problem? Who has it?
-    Replace this text with a concise description of the real-world problem
-    your project addresses and who experiences it.
+  problem_statement: >
+    Electric utilities lack a unified view correlating equipment sensor health,
+    active weather conditions, and historical failure patterns. Grid reliability
+    teams spend 45-90 minutes per asset manually checking three disconnected
+    systems before dispatching maintenance crews — leading to reactive post-failure
+    responses that affect 15,000-80,000 customers per event and cost $2-5M each.
 
-  solution_summary: >                  # REQUIRED — 1-3 sentences. What did you build?
-    Replace this text with a clear description of your solution
-    and how it addresses the problem above.
+  solution_summary: >
+    GridGuard AI combines sensor data, weather zone risk, and historical incident
+    records into a transparent Failure Risk score weighted by Grid Impact
+    (Maintenance Priority = Failure Risk x Grid Impact x 100). IBM watsonx.ai
+    Granite 3.1 Instruct generates natural-language maintenance recommendations
+    with urgency levels and crew pre-positioning guidance for at-risk assets.
 
-  key_features:                        # REQUIRED — List 3 to 5 specific features you implemented
-    - ""                               # e.g., "Real-time pipeline anomaly detection using watsonx.ai"
-    - ""
-    - ""
-    - ""                               # optional 4th
-    - ""                               # optional 5th
+  key_features:
+    - "Explainable failure risk scoring — transparent weighted formula (sensor 50% + weather 30% + history 20%) with IEEE/IEC thresholds"
+    - "Grid Impact-weighted maintenance priority ranking — ensures high-consequence assets rank first, not just high-risk ones"
+    - "IBM watsonx.ai (Granite 3.1 Instruct) maintenance advisory with urgency, action plan, and crew pre-positioning"
+    - "Multi-dimensional asset detail: sensor gauges, risk breakdown charts, weather panel, incident history in one screen"
+    - "Professional grid operations dashboard with real-time KPI cards, sortable priority table, and weather zone monitor"
 
   tech_stack:
-    languages: []                      # REQUIRED — e.g., ["Python", "TypeScript"]
-    frameworks: []                     # e.g., ["FastAPI", "React"]
-    ibm_technologies: []               # e.g., ["watsonx.ai", "IBM Bob", "IBM Cloud Functions"]
-    databases: []                      # e.g., ["PostgreSQL", "Redis"]
-    other: []                          # e.g., ["Docker", "GitHub Actions", "Slack API"]
+    languages: ["Python 3.11", "JavaScript ES2022"]
+    frameworks: ["FastAPI", "React 18", "Vite 8", "Tailwind CSS 4"]
+    ibm_technologies: ["IBM Bob", "watsonx.ai (ibm/granite-3-1-8b-instruct)"]
+    databases: []
+    other: ["Recharts", "React Router", "ibm-watsonx-ai SDK", "Uvicorn", "Lucide React"]
 
-  what_we_are_most_proud_of: >         # Optional but recommended — guides judges to your best work
-    Replace with what aspect of the submission you consider strongest
-    and want judges to pay special attention to.
+  what_we_are_most_proud_of: >
+    The transparent, explainable risk scoring engine combined with the Grid Impact
+    priority matrix. Every number traces to specific sensor thresholds, weather
+    conditions, and historical incidents — documented against IEEE/IEC standards.
+    Maintenance Priority = Failure Risk x Grid Impact correctly ranks a moderately
+    degraded downtown transformer ahead of a highly degraded rural feeder switch,
+    which is exactly the insight utility operators need. IBM Bob was central to
+    the entire development workflow, from architecture to implementation.
 
-  known_limitations: >                 # Optional but recommended — be honest about gaps
-    Replace with any known limitations, incomplete features,
-    or shortcuts taken due to time constraints.
+  known_limitations: >
+    Sensor and weather data are representative fixtures, not live SCADA/API feeds.
+    The architecture is designed for real API integration. No user authentication
+    (appropriate for internal utility network). watsonx.ai recommendations require
+    credentials in .env; the local fallback engine works without them.
 
-# =============================================================================
-# ARTIFACT LOCATIONS
-# These paths are relative to the repo root. Only change if you moved files.
-# =============================================================================
 artifacts:
   source_code: "src/"
   setup_guide: "docs/setup-guide.md"
   architecture_doc: "docs/architecture.md"
-  demo_video: "demo/demo-video-link.txt"   # URL to hosted video (YouTube, Loom, Box)
-  live_demo: "demo/live-demo-url.txt"      # URL to deployed demo (optional)
+  demo_video: "demo/demo-video-link.txt"
+  live_demo: "demo/live-demo-url.txt"
   screenshots: "demo/screenshots/"
   presentation: "presentation/"

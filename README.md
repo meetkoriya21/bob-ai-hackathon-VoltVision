@@ -1,6 +1,6 @@
-# 🚀 [Your Project Title Here]
+# 🔌 GridGuard AI — Power Outage Prediction & Grid Equipment Failure Advisor
 
-> ⚠️ **Replace everything in `[ ]` brackets with your actual content before submission.**
+> Built by **Team VoltVision** for the IBM Bob AI Innovation Hackathon
 
 ---
 
@@ -8,36 +8,34 @@
 
 | Field | Value |
 |---|---|
-| **Team Name** | [Your Team Name] |
-| **Track** | [AI / DevOps / Sustainability / Open] |
-| **Team Lead** | [Name] — [email@ibm.com] |
-| **Members** | [Name 1], [Name 2], [Name 3] |
+| **Team Name** | VoltVision |
+| **Track** | AI |
+| **Team Lead** | VoltVision Lead — voltvision@ibm.com |
+| **Members** | VoltVision Member 1, VoltVision Member 2 |
 
 ---
 
 ## 🎯 Problem Statement
 
-> In 2–3 sentences: What problem does your project solve? Who experiences this problem?
+Electric utilities operate thousands of aging grid assets under increasing stress from climate-driven weather events and rising load demand. Grid reliability teams currently rely on **three disconnected systems** (SCADA, weather portals, and maintenance logs) to assess equipment risk — a process that takes 45–90 minutes per asset and leads to reactive, post-failure dispatch rather than proactive maintenance.
 
-[Describe the real-world problem your project addresses. Be specific about who the user is and what pain point they face.]
+The consequence: unplanned transformer outages affect 15,000–80,000 customers each, take 6–18 hours to restore, and cost $2–5M per event. GridGuard AI unifies all three risk dimensions into a single, explainable, action-oriented interface.
 
 ---
 
 ## 💡 Solution
 
-> In 2–3 sentences: What did you build? How does it solve the problem above?
-
-[Describe your solution clearly. Explain the core mechanism — what makes it work.]
+GridGuard AI is a real-time grid equipment failure prediction and maintenance advisory dashboard. It combines sensor health data, weather zone risk, and historical incident records into a transparent **Failure Risk score**, weighted by **Grid Impact** to produce a **Maintenance Priority ranking**. IBM watsonx.ai (Granite 3.1 Instruct) generates natural-language maintenance recommendations, crew pre-positioning guidance, and urgency assessments for at-risk assets.
 
 ---
 
 ## ✨ Key Features
 
-- **Feature 1:** [Brief description — e.g., "Real-time anomaly detection using watsonx.ai"]
-- **Feature 2:** [Brief description]
-- **Feature 3:** [Brief description]
-- **Feature 4:** [Optional]
-- **Feature 5:** [Optional]
+- **Explainable failure risk scoring** — Transparent weighted formula (sensor 50% + weather 30% + history 20%) with documented IEEE/IEC thresholds. No black-box AI for numerical scores.
+- **Grid Impact–weighted maintenance priority** — `Priority = Failure Risk × Grid Impact × 100` ensures high-consequence assets are ranked first, not just high-risk ones.
+- **IBM watsonx.ai maintenance advisory** — Granite 3.1 Instruct generates structured recommendations with urgency, action plan, and crew pre-positioning. Local rule-based fallback ensures the demo always works.
+- **Multi-dimensional asset detail view** — Sensor gauges, risk breakdown charts, weather panel, incident history, and AI advisory in one screen.
+- **Professional operations dashboard** — Real-time KPI cards, sortable priority table, weather zone monitor — built for utility operations teams.
 
 ---
 
@@ -45,51 +43,59 @@
 
 | Category | Technologies |
 |---|---|
-| **Languages** | [e.g., Python, TypeScript] |
-| **Frameworks** | [e.g., FastAPI, React] |
-| **IBM Technologies** | [e.g., watsonx.ai, IBM Bob, IBM Cloud] |
-| **Databases** | [e.g., PostgreSQL, Redis] |
-| **Other** | [e.g., Docker, GitHub Actions] |
+| **Languages** | Python 3.11, JavaScript (ES2022) |
+| **Frameworks** | FastAPI, React 18, Vite 8, Tailwind CSS 4 |
+| **IBM Technologies** | IBM Bob (IDE/development), watsonx.ai (ibm/granite-3-1-8b-instruct) |
+| **Libraries** | Recharts, React Router, Lucide React, ibm-watsonx-ai SDK, Uvicorn |
+| **Data** | Structured Python fixtures (API-ready for SCADA/historian integration) |
 
 ---
 
 ## 📁 Repository Structure
 
 ```
-├── src/                  # All source code
-├── docs/                 # Written documentation
-│   ├── problem-statement.md
-│   ├── solution-overview.md
-│   ├── architecture.md
-│   └── setup-guide.md
-├── demo/                 # Demo artifacts
-│   ├── screenshots/      # App screenshots
-│   └── demo-video-link.txt  # Link to demo video
-├── presentation/         # Slide deck
-└── submission.yaml       # Structured submission metadata
+├── src/
+│   ├── backend/              ← FastAPI API server + risk engine
+│   │   ├── main.py           ← FastAPI app entry point
+│   │   ├── requirements.txt
+│   │   ├── engine/
+│   │   │   ├── risk_engine.py        ← Deterministic risk scoring
+│   │   │   └── recommendation.py    ← watsonx.ai + local fallback
+│   │   ├── data/
+│   │   │   ├── assets.py     ← 20 grid asset fixtures
+│   │   │   ├── weather.py    ← 5 zone weather fixtures
+│   │   │   └── incidents.py  ← 25+ historical incident records
+│   │   └── routers/          ← API route handlers
+│   └── frontend/             ← React + Tailwind dashboard
+│       └── src/
+│           ├── pages/        ← Dashboard, Assets, AssetDetail, Weather
+│           └── components/   ← Shared UI components
+├── docs/                     ← Full documentation
+├── demo/                     ← Screenshots and demo video link
+└── submission.yaml           ← Hackathon metadata
 ```
 
 ---
 
 ## ⚡ How to Run
 
-> **Copy these exact steps from your [`docs/setup-guide.md`](docs/setup-guide.md)**
+See [`docs/setup-guide.md`](docs/setup-guide.md) for full instructions.
 
 ```bash
-# 1. Clone the repo
-git clone https://github.com/[your-repo].git
-cd [your-repo]
+# Terminal 1 — Backend
+cd src/backend
+python -m venv .venv && .venv\Scripts\Activate.ps1  # or source .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env   # watsonx.ai credentials optional
+uvicorn main:app --reload --port 8000
 
-# 2. Install dependencies
-[your install command here]
-
-# 3. Configure environment
-cp .env.example .env
-# Edit .env with your values
-
-# 4. Run the project
-[your run command here]
+# Terminal 2 — Frontend
+cd src/frontend
+npm install --legacy-peer-deps
+npm run dev
 ```
+
+Open **http://localhost:5173** — dashboard loads immediately.
 
 ---
 
@@ -98,24 +104,20 @@ cp .env.example .env
 | Artifact | Link |
 |---|---|
 | 📹 Demo Video | [See demo/demo-video-link.txt](demo/demo-video-link.txt) |
-| 🌐 Live Demo | [See demo/live-demo-url.txt](demo/live-demo-url.txt) |
+| 🌐 Live Demo | NOT DEPLOYED — run locally using docs/setup-guide.md |
 | 🖼️ Screenshots | [See demo/screenshots/](demo/screenshots/) |
-| 📊 Presentation | [See presentation/slides.pdf](presentation/) |
+| 📊 Presentation | [See presentation/](presentation/) |
 
 ---
 
 ## ⚠️ Known Limitations
 
-> Be honest — judges appreciate transparency over overclaiming.
-
-- [Limitation 1: e.g., "Authentication is mocked — not production-ready"]
-- [Limitation 2: e.g., "Only tested on Chrome"]
-- [Limitation 3: e.g., "Feature X is scaffolded but not fully implemented"]
+- Sensor and weather data are representative fixtures (not live SCADA/API feeds). The architecture is designed for real API integration — replace `data/assets.py` and `data/weather.py` fixtures with live API calls.
+- No user authentication (appropriate for internal utility network deployment; not production internet-facing).
+- IBM watsonx.ai recommendations require credentials configured in `.env`. The local fallback engine always works.
 
 ---
 
 ## 🏅 What We're Most Proud Of
 
-[Tell the judges what part of your submission is strongest and worth paying close attention to.]
-
----
+The **transparent, explainable risk scoring engine** combined with the **Grid Impact priority matrix**. Unlike black-box systems that produce opaque risk scores, every number in GridGuard AI traces directly to specific sensor thresholds, weather conditions, and historical incidents — with weights documented against IEEE/IEC standards. The `Maintenance Priority = Failure Risk × Grid Impact` formulation is simple enough to explain in a 30-second demo but powerful enough to correctly rank a moderately-degraded downtown transformer ahead of a highly-degraded rural feeder switch. That's the insight utility operators need.
